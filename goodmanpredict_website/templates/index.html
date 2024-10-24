@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+
+    {% block content %}
+     <!-- Masthead-->
+        <header class="masthead">
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="d-flex justify-content-center">
+                    <div class="text-center">
+                        <h1 class="mx-auto my-0 text-uppercase">Goodman Pole</h1>
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5">A website for price prediction of cryptocurrencies through different models.</h2>
+                        {% url 'about' as about_url %}
+                        <a class="btn btn-primary" href="{{ about_url }}">Let's Rock</a>
+                    </div>
+                </div>
+            </div>
+        </header>
+        <h1>
+                Home
+        </h1>
+    {% endblock %}
+
+</body>
+</html>

@@ -1,0 +1,78 @@
+{% extends 'base.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Goodman Pole-Models{% endblock %}</title>
+
+    <link href="{% static 'theme/css/styles.css' %}" rel="stylesheet" />
+
+    <link href="{% static 'css/main.css' %}" rel="stylesheet" />
+</head>
+<body>
+        <main id="main">
+        {% block content %}
+         <!-- Masthead-->
+        <header class="masthead">
+            <form action="" method="POST">
+                {% csrf_token %}
+
+            <div class="container px-4 px-lg-5 d-flex h-100 align-items-center justify-content-center">
+                <div class="row">
+                    <div class="col-md-8 center" style="margin-top: 3rem; ">
+                        <h2 class="text-white-50 mx-auto mt-2 mb-5 text-center text-uppercase" style="color:#CBD5E1;">Choose your model to predict with</h2>
+
+                            <div  class="table-responsive-sm scrollable justify-content-center ">
+<!--                    <div class="text-center">-->
+<!--                        <h1 class="mx-auto my-0 text-uppercase">Goodman Pole</h1>-->
+                        <!--                        {% url 'about' as about_url %}-->
+<!--                        <a class="btn btn-primary" href="{{ about_url }}">Let's Rock</a>-->
+<!--                    </div>-->
+
+                    <table class="table table-dark table-striped table-hover table-borderless text-center center" id="crawler_table">
+                        <thead class="table-light">
+                        <tr class="justify-content-center">
+                            <th scope="col" >#</th>
+                            <th scope="col">Model</th>
+                            <th scope="col">Use</th>
+
+                        </tr>
+                        </thead>
+                        <tbody>
+                        {% for model in models_list %}
+                            <tr class="align-middle">
+                                <td>{{ model.id }}</td>
+                                <td class="align-middle">{{ model.name }}</td>
+                                <td>
+                                    {% if model.status %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" checked="checked" value="{{ model.name }}" name="boxes">
+                                        </div>
+                                    {% else %}
+                                        <div class="form-check">
+                                            <input class="form-check-input" type="checkbox" value="{{ model.name }}" name="boxes">
+                                        </div>
+                                    {% endif %}
+
+                                </td>
+                            </tr>
+                        {% endfor %}
+                        </tbody>
+
+                    </table>
+                    </div>
+
+                        <button style="margin-top: 2rem;" class="btn btn-primary" type="submit">Start Prediction</button>
+
+                </div>
+                </div>
+            </div>
+            </form>
+        </header>
+
+        {% endblock %}
+        </main>
+
+
+</body>
+</html>
